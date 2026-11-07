@@ -1,0 +1,12 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Responsive showcase – PolyU Design Subsidy Portal</title>
+<style>body{margin:0;background:#2a2625;font:14px system-ui,sans-serif;color:#fff}header{position:sticky;top:0;background:#1c1918;padding:10px 16px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;align-items:center;z-index:2}
+button,select{font:600 14px system-ui;padding:8px 14px;border-radius:8px;border:1px solid #6b5f5a;background:#2a2625;color:#fff;cursor:pointer}button.on{background:#fbc16f;color:#000;border-color:#fbc16f}
+main{display:flex;justify-content:center;padding:16px}#w{position:relative}iframe{border:0;background:#fff6ee;transform-origin:top left;border-radius:10px;display:block}iframe.m{border-radius:32px;box-shadow:0 0 0 10px #111,0 0 0 12px #444}
+a{color:#fbc16f}</style></head><body>
+<header><nav aria-label="Device"><button data-w="1440">Desktop</button> <button data-w="1024">Tablet</button> <button data-w="402">Mobile</button></nav><label>Screen <select id="j"></select></label><a href="index.html" target="_blank" rel="noopener">Open live site</a></header>
+<main><div id="w"><iframe id="f" title="Portal prototype" src="index.html#login"></iframe></div></main>
+<script>const N={login:'0 Sign in (SSO)',dash:'1 Student dashboard',a1:'2 Apply step 1 – Your details',a2:'3 Apply step 2 – Competition',a3:'4 Apply step 3 – Claim',a4:'5 Apply step 4 – Review & send',ok:'6 Application sent',c1:'7 Claims – Submitted',c2:'8 Claims – Changes requested',c3:'9 Claims – Approved',c4:'10 Claims – Reimbursed',ref:'11 Reference list',ref0:'12 Reference list – no results',rules:'13 Rules & help',rules2:'14 Rules – Who can apply'};
+const f=document.getElementById('f'),w=document.getElementById('w'),j=document.getElementById('j');let W=1440;
+j.innerHTML=Object.entries(N).map(([k,v])=>`<option value="${k}">${v}</option>`).join('');
+function fit(){const s=Math.min(1,(innerWidth-(W<500?48:32))/W),H=Math.max(480,(innerHeight-90)/s);f.style.width=W+'px';f.style.height=H+'px';f.style.transform=`scale(${s})`;f.className=W<500?'m':'';w.style.width=W*s+'px';w.style.height=H*s+'px';document.querySelectorAll('[data-w]').forEach(b=>b.classList.toggle('on',+b.dataset.w==W))}
+document.querySelectorAll('[data-w]').forEach(b=>b.onclick=()=>{W=+b.dataset.w;fit()});j.onchange=()=>{f.contentWindow.location.hash=j.value};addEventListener('resize',fit);fit();</script></body></html>
